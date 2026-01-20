@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.kitchen.Cook;
+import com.example.kitchen.Waiter;
 
 
 public class Restaurant {
@@ -9,6 +10,9 @@ public class Restaurant {
 
         Cook cook = new Cook("Вася");
         tablet.addObserver(cook);
+
+        Waiter waiter = new Waiter();
+        cook.addObserver(waiter);
 
         tablet.createOrder();
 //        tablet.createOrder();

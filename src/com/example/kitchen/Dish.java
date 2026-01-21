@@ -1,11 +1,21 @@
 package com.example.kitchen;
 
 public enum Dish {
-    FISH,
-    STEAK,
-    SOUP,
-    JUICE,
-    WATER;
+    FISH(25),
+    STEAK(30),
+    SOUP(15),
+    JUICE(5),
+    WATER(3);
+
+    Dish(int duration) {
+        this.duration = duration;
+    }
+
+    private int duration;
+
+    public int getDuration() {
+        return duration;
+    }
 
     public static String allDishesToString() {
         StringBuilder sb = new StringBuilder();

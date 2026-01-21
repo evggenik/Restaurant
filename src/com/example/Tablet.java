@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.ad.AdvertisementManager;
 import com.example.kitchen.Order;
 
 import java.io.IOException;
@@ -19,6 +20,9 @@ public class Tablet extends Observable {
     public Order createOrder() {
         try {
             Order order = new Order(this);
+            AdvertisementManager advertisementManager = new AdvertisementManager(order.getTotalCookingTime() * 60);
+            advertisementManager.processVideos();
+
             if (order.isEmpty()) return null;
 
             ConsoleHelper.writeMessage(order.toString());

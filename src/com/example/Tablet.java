@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.ad.AdvertisementManager;
+import com.example.ad.NoVideoAvailableException;
 import com.example.kitchen.Order;
 
 import java.io.IOException;
@@ -18,12 +19,14 @@ public class Tablet extends Observable {
     }
 
     public Order createOrder() {
+        Order order = null;
         try {
-            Order order = new Order(this);
+            order = new Order(this);
             AdvertisementManager advertisementManager = new AdvertisementManager(order.getTotalCookingTime() * 60);
             advertisementManager.processVideos();
 
-            if (order.isEmpty()) return null;
+            if (order.isEmpty())
+                return null;
 
             ConsoleHelper.writeMessage(order.toString());
             setChanged();
@@ -31,11 +34,11 @@ public class Tablet extends Observable {
             return order;
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Console is unavailable");
-            return null;
+        } catch (NoVideoAvailableException e) {
+            logger.log(Level.INFO, "No video is available for the order " + order);
         }
+        return order;
     }
-
-
 
     @Override
     public String toString() {

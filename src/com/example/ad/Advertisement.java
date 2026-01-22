@@ -1,11 +1,14 @@
 package com.example.ad;
 
 public class Advertisement {
-
+    // видео
     private Object content;
     private String name;
+    // начальная сумма, стоимость рекламы в копейках, лонг для округления
     private long initialAmount;
+    // кол-во оплаченных показов
     private int hits;
+    // продолжительность в секундах
     private int duration;
 
     private long amountPerOneDisplaying;
@@ -31,5 +34,11 @@ public class Advertisement {
 
     public long getAmountPerOneDisplaying() {
         return amountPerOneDisplaying;
+    }
+
+    public void revalidate() {
+        if (hits <= 0)
+            throw new UnsupportedOperationException();
+        hits--;
     }
 }

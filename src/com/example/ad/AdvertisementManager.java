@@ -1,6 +1,5 @@
 package com.example.ad;
 
-import com.example.ConsoleHelper;
 
 public class AdvertisementManager {
 
@@ -12,6 +11,13 @@ public class AdvertisementManager {
     }
 
     public void processVideos() {
-        ConsoleHelper.writeMessage("calling processVideos method");
+        if (storage.list().isEmpty())
+            throw new NoVideoAvailableException();
+//        Collections.sort(storage.list(), new Comparator<Advertisement>() {
+//            @Override
+//            public int compare(Advertisement o1, Advertisement o2) {
+//                return 0;
+//            }
+//        });
     }
 }

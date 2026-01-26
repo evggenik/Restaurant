@@ -1,6 +1,9 @@
 package com.example.ad;
 
 
+import com.example.statistic.StatisticManager;
+import com.example.statistic.event.VideoSelectedEventDataRow;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,10 @@ public class AdvertisementManager {
     public void processVideos() {
         this.totalTimeSecondsLeft = Integer.MAX_VALUE;
         obtainOptimalVideoSet(new ArrayList<>(), timeSeconds, 0L);
+
+        VideoSelectedEventDataRow row = new VideoSelectedEventDataRow(optimalVideoSet, maxAmount, timeSeconds - totalTimeSecondsLeft);
+        StatisticManager.getInstance().register(row);
+
 
         displayAdvertisement();
     }

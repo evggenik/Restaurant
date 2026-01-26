@@ -1,16 +1,15 @@
 package com.example.statistic;
 
+import com.example.kitchen.Cook;
 import com.example.statistic.event.EventDataRow;
 import com.example.statistic.event.EventType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StatisticManager {
 
     private final StatisticStorage statisticStorage = new StatisticStorage();
+    private Set<Cook> cooks = new HashSet<>();
 
     private StatisticManager() {}
 
@@ -41,5 +40,9 @@ public class StatisticManager {
 
     public void register(EventDataRow data) {
         this.statisticStorage.put(data);
+    }
+
+    public void register(Cook cook) {
+        this.cooks.add(cook);
     }
 }
